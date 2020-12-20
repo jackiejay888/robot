@@ -6,18 +6,29 @@
 # @title: Robot Framework
 # '''
 
+# *** Settings ***
+# Documentation     A test suite with a single test for valid login.
+# ...
+# ...               This test has a workflow that is created using keywords in
+# ...               the imported resource file.
+# Resource          resource.txt
+
+# *** Test Cases ***
+# Valid Login
+#     Open Browser To Login Page
+#     Input Username    demo
+#     Input Password    mode
+#     Submit Credentials
+#     Welcome Page Should Be Open
+#     [Teardown]    Close Browser
+
 *** Settings ***
-Documentation     A test suite with a single test for valid login.
-...
-...               This test has a workflow that is created using keywords in
-...               the imported resource file.
-Resource          resource.txt
+Library         SeleniumLibrary
 
 *** Test Cases ***
-Valid Login
-    Open Browser To Login Page
-    Input Username    demo
-    Input Password    mode
-    Submit Credentials
-    Welcome Page Should Be Open
-    [Teardown]    Close Browser
+testcase
+    log  robot  framework
+    Open  Browser  http://www.baidu.com  Chrome
+    Input   Text    id = kw robot framework
+    Click   Button  id = su
+    Close   Browser
